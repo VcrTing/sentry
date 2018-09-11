@@ -5,16 +5,13 @@
  */
 export default function Grid(props = {}) {
   return {
-    top: 24,
-
-    // Is this a decent default for X-axis labels?
+    top: 40,
     bottom: 40,
-
     // This should allow for sufficient space for Y-axis labels
-    left: '10%',
-
-    right: '10%',
-
+    left: '3%',
+    right: '3%',
+    padding: 5,
+    itemGap: 25,
     ...props,
   };
 }
