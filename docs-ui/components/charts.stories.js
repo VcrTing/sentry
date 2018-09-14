@@ -1,7 +1,7 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
 import {withInfo} from '@storybook/addon-info';
-import {number, boolean, text} from '@storybook/addon-knobs';
+import {number, boolean, text, array} from '@storybook/addon-knobs';
 
 import LineChart from 'app/components/charts/lineChart';
 import BarChart from 'app/components/charts/barChart';
@@ -44,7 +44,6 @@ storiesOf('Charts|Playground')
               ],
             },
           ]}
-          showLegend={boolean('Legend', true)}
           tooltip={{
             filter: value => value !== null,
             truncate: 80,
@@ -55,6 +54,7 @@ storiesOf('Charts|Playground')
               text('Line 2 Legend (match Line 2)', 'environment'),
               text('Line 3 Legend (match Line 3)', 'browser'),
             ],
+            type: text('Legend Type', 'scroll'),
           }}
           height={number('height', 300)}
           grid={{
@@ -68,7 +68,7 @@ storiesOf('Charts|Playground')
     ))
   )
   .add(
-    'Bar Chart',
+    'Bar Chart w/ Legend Knobs',
     withInfo('Description')(() => (
       <div style={{backgroundColor: 'white', padding: 12}}>
         <BarChart
@@ -105,17 +105,41 @@ storiesOf('Charts|Playground')
               ],
             },
           ]}
-          showLegend={boolean('Legend', true)}
           tooltip={{
             filter: value => value !== null,
             truncate: 80,
           }}
           legend={{
+            show: boolean('Legend show', true),
             data: [
               text('Line 1 Legend (match Line 1)', 'sentry:user'),
               text('Line 2 Legend (match Line 2)', 'environment'),
               text('Line 3 Legend (match Line 3)', 'browser'),
             ],
+            type: text('Legend Type', 'scroll'),
+            orient: text('Legend Orient (vertical or horizontal)', 'horizontal'),
+
+            align: text('Legend Align (left, right)', 'auto'),
+            left: text('Legend Left (left, right, center)', 'auto'),
+            top: text('Legend top (top, middle, bottom)', 'auto'),
+            right: text('Legend Right (20 or 20%)', 'auto'),
+            width: text('Legend Width (string or number)', 'auto'),
+            height: text('Legend Height', 'auto'),
+            scrollDataIndex: number('Legend Scroll Data Index', 0),
+            pageButtonItemGap: number('Legend Scroll Page Button Item gap', 5),
+            pageButtonGap: number(
+              'Legend Scroll Gap btwn buttons and legend items',
+              null
+            ),
+            pageFormatter: text(
+              'Legend Scroll Only: Page info formatter where {current}/{total} by default. total is total page number',
+              'current: 1, total: 3'
+            ),
+
+            padding: number('Legend Padding', 5),
+            borderRadius: array(
+              'Border Array clockwise top left/right, bottom right/left'[(0, 0, 0, 0)]
+            ),
           }}
           height={number('height', 300)}
           grid={{

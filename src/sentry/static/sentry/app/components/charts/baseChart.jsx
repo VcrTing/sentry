@@ -100,7 +100,6 @@ class BaseChart extends React.Component {
 
     //will add to sentryTypes in showLegend PR for discover coming up
     legend: PropTypes.object,
-    showLegend: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -138,7 +137,6 @@ class BaseChart extends React.Component {
       grid,
       tooltip,
       legend,
-      showLegend,
       series,
       yAxis,
       xAxis,
@@ -184,7 +182,7 @@ class BaseChart extends React.Component {
           color: colors || this.getColorPalette(),
           grid: Grid(grid),
           tooltip: tooltip !== null ? Tooltip({isGroupedByDate, ...tooltip}) : null,
-          legend: showLegend && legend ? Legend(legend) : null,
+          legend: legend ? Legend(legend) : null,
           yAxis: yAxis !== null ? YAxis(yAxis) : null,
           xAxis:
             xAxis !== null
