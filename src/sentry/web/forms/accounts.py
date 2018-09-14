@@ -279,7 +279,7 @@ class RecoverPasswordForm(forms.Form):
             return
         users = find_users(value, with_valid_password=False)
         if not users:
-            raise forms.ValidationError(_("We were unable to find a matching user."))
+            return
 
         users = [u for u in users if not u.is_managed]
         if not users:
@@ -287,11 +287,6 @@ class RecoverPasswordForm(forms.Form):
                 _(
                     "The account you are trying to recover is managed and does not support password recovery."
                 )
-            )
-
-        if len(users) > 1:
-            raise forms.ValidationError(
-                _("Multiple accounts were found matching this email address.")
             )
         return users[0]
 
