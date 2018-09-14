@@ -120,7 +120,7 @@ storiesOf('Charts|Playground')
             orient: text('Legend Orient (vertical or horizontal)', 'horizontal'),
 
             align: text('Legend Align (left, right)', 'auto'),
-            left: text('Legend Left (left, right, center)', 'auto'),
+            left: text('Legend Left (left, right, center)', 'center'),
             top: text('Legend top (top, middle, bottom)', 'auto'),
             right: text('Legend Right (20 or 20%)', 'auto'),
             width: text('Legend Width (string or number)', 'auto'),
@@ -137,9 +137,6 @@ storiesOf('Charts|Playground')
             ),
 
             padding: number('Legend Padding', 5),
-            borderRadius: array(
-              'Border Array clockwise top left/right, bottom right/left'[(0, 0, 0, 0)]
-            ),
           }}
           height={number('height', 300)}
           grid={{
