@@ -121,8 +121,9 @@ storiesOf('Charts|Playground')
 
             align: text('Legend Align (left, right)', 'auto'),
             left: text('Legend Left (left, right, center)', 'center'),
-            top: text('Legend top (top, middle, bottom)', 'auto'),
             right: text('Legend Right (20 or 20%)', 'auto'),
+            top: text('Legend top (top, middle, bottom)', 'auto'),
+            bottom: text('Legend Bottom (20 or 20%)', 'auto'),
             width: text('Legend Width (string or number)', 'auto'),
             height: text('Legend Height', 'auto'),
             scrollDataIndex: number('Legend Scroll Data Index', 0),
@@ -131,12 +132,13 @@ storiesOf('Charts|Playground')
               'Legend Scroll Gap btwn buttons and legend items',
               null
             ),
+            pageButtonPosition: text('Legend Scroll Page Button Position (start, end)', 'end'),
             pageFormatter: text(
               'Legend Scroll Only: Page info formatter where {current}/{total} by default. total is total page number',
               'current: 1, total: 3'
             ),
 
-            padding: number('Legend Padding', 5),
+            padding: number('Legend Padding', 0),
           }}
           height={number('height', 300)}
           grid={{
