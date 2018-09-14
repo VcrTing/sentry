@@ -13,6 +13,7 @@ import LineSeries from './series/lineSeries';
 import Tooltip from './components/tooltip';
 import YAxis from './components/yAxis';
 import XAxis from './components/xAxis';
+import Legend from './components/legend';
 
 // If dimension is a number conver it to pixels, otherwise use dimension without transform
 const getDimensionValue = dimension => {
@@ -96,6 +97,10 @@ class BaseChart extends React.Component {
     // If data is grouped by date, then apply default date formatting to
     // x-axis and tooltips.
     isGroupedByDate: PropTypes.bool,
+
+    //will add to sentryTypes in showLegend PR for discover coming up
+    legend: PropTypes.object,
+    showLegend: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -132,6 +137,8 @@ class BaseChart extends React.Component {
       colors,
       grid,
       tooltip,
+      legend,
+      showLegend,
       series,
       yAxis,
       xAxis,
@@ -177,6 +184,7 @@ class BaseChart extends React.Component {
           color: colors || this.getColorPalette(),
           grid: Grid(grid),
           tooltip: tooltip !== null ? Tooltip({isGroupedByDate, ...tooltip}) : null,
+          legend: showLegend && legend ? Legend(legend) : null,
           yAxis: yAxis !== null ? YAxis(yAxis) : null,
           xAxis:
             xAxis !== null
