@@ -281,6 +281,13 @@ class RecoverPasswordForm(forms.Form):
         if not users:
             return
 
+        # If we find more than one user, we likely matched on email address.
+        # We silently bail here as we emailing the 'wrong' person isn't great.
+        # They will have to retry with their username which is guaranteed
+        # to be unique
+        if len(users) > 1:
+            return
+
         users = [u for u in users if not u.is_managed]
         if not users:
             raise forms.ValidationError(

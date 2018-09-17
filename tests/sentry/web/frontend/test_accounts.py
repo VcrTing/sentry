@@ -23,6 +23,14 @@ class TestAccounts(TestCase):
         self.assertTemplateUsed('sentry/account/recover/sent.html')
         assert 0 == len(LostPasswordHash.objects.all())
 
+    def test_post_success(self):
+        user = self.create_user()
+
+        resp = self.client.post(self.path, {'user': user.email})
+        assert resp.status_code == 200
+        self.assertTemplateUsed('sentry/account/recover/sent.html')
+        assert 1 == len(LostPasswordHash.objects.all())
+
     def test_post_managed_user(self):
         user = self.create_user()
         user.is_managed = True
@@ -37,12 +45,15 @@ class TestAccounts(TestCase):
         assert 0 == len(LostPasswordHash.objects.all())
 
     def test_post_multiple_users(self):
-        user = self.create_user()
-        user_dup = self.create_user()
+        user = self.create_user(email='bob')
+        user.email = 'bob@example.com'
+        user.save()
+
+        user_dup = self.create_user(email="jill")
         user_dup.email = user.email
         user_dup.save()
 
         resp = self.client.post(self.path, {'user': user.email})
         assert resp.status_code == 200
-        self.assertTemplateUsed('sentry/account/recover/sent.html')
-        assert 1 == len(LostPasswordHash.objects.all())
+        self.assertTemplateUsed('sentry/account/recover/index.html')
+        assert 0 == len(LostPasswordHash.objects.all())
