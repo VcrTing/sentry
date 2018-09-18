@@ -294,11 +294,11 @@ const ReleaseOverview = createReactClass({
                   Connect a repository to see commit info, files changed, and authors
                   involved in future releases.
                 </p>
-                <p>
+                <Box mb={1}>
                   <Button priority="primary" href={`/organizations/${orgId}/repos/`}>
                     Connect a repository
                   </Button>
-                </p>
+                </Box>
               </Well>
             )}
             <h6 className="nav-header m-b-1">{t('Deploys')}</h6>
