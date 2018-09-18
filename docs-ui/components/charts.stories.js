@@ -75,7 +75,7 @@ storiesOf('Charts|Playground')
           stacked={boolean('stacked', true)}
           series={[
             {
-              seriesName: text('Line 1', 'sentry:user'),
+              seriesName: text('Line 1', 'MultipleObjectsReturned: get() returned more than one TagValue -- it returned 2! sentry.tasks.index_event_tags'),
               data: [
                 {value: 18, name: 'Aug 15th'},
                 {value: 31, name: 'Aug 16th'},
@@ -85,7 +85,7 @@ storiesOf('Charts|Playground')
               ],
             },
             {
-              seriesName: text('Line 2', 'environment'),
+              seriesName: text('Line 2', 'ExpiredSignatureError: Signature has expired /plugins/jira-ac/plugin'),
               data: [
                 {value: 84, name: 'Aug 15th'},
                 {value: 1, name: 'Aug 16th'},
@@ -95,7 +95,7 @@ storiesOf('Charts|Playground')
               ],
             },
             {
-              seriesName: text('Line 3', 'browser'),
+              seriesName: text('Line 3', 'MultipleObjectsReturned: get() returned more than one TagValue -- it returned 3! sentry.tasks.index_event_tags'),
               data: [
                 {value: 108, name: 'Aug 15th'},
                 {value: 1, name: 'Aug 16th'},
@@ -107,15 +107,16 @@ storiesOf('Charts|Playground')
           ]}
           tooltip={{
             filter: value => value !== null,
-            truncate: 80,
+            truncate: 50,
           }}
           legend={{
-            show: boolean('Legend show', true),
+            show: boolean('LEGEND KNOBS BELOW:\n\n show legend', true),
             data: [
-              text('Line 1 Legend (match Line 1)', 'sentry:user'),
-              text('Line 2 Legend (match Line 2)', 'environment'),
-              text('Line 3 Legend (match Line 3)', 'browser'),
+              text('Line 1 Legend (match Line 1)', 'MultipleObjectsReturned: get() returned more than one TagValue -- it returned 2! sentry.tasks.index_event_tags'),
+              text('Line 2 Legend (match Line 2)', 'ExpiredSignatureError: Signature has expired /plugins/jira-ac/plugin'),
+              text('Line 3 Legend (match Line 3)', 'MultipleObjectsReturned: get() returned more than one TagValue -- it returned 3! sentry.tasks.index_event_tags'),
             ],
+            padding: number('Legend Padding', 0),
             type: text('Legend Type', 'scroll'),
             orient: text('Legend Orient (vertical or horizontal)', 'horizontal'),
 
@@ -138,14 +139,13 @@ storiesOf('Charts|Playground')
               'current: 1, total: 3'
             ),
 
-            padding: number('Legend Padding', 0),
           }}
           height={number('height', 300)}
           grid={{
-            top: text('grid:top', 24),
-            bottom: text('grid:bottom', 40),
-            left: text('grid:left', '10%'),
-            right: text('grid:right', '10%'),
+            top: text('GRID KNOBS:\ntop', 24),
+            bottom: text('bottom', 40),
+            left: text('left', '10%'),
+            right: text('right', '10%'),
           }}
         />
       </div>
